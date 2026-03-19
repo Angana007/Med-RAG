@@ -190,18 +190,9 @@ Confidence: <score>
 ## 🚀 Project Setup & Usage
 ---
 
-### 1️⃣ Environment & Dependencies
-
-```bash
-python -m venv venv
-```
-
-## Project Setup & Usage:
----
-
 To ensure the Med-RAG Clinical Assistant runs correctly in your local environment, follow these steps:
 
-1. Environment & Dependencies
+### 1️⃣ Environment & Dependencies
 
 First, create a virtual environment to keep your dependencies isolated:
 
@@ -223,7 +214,7 @@ pip install fastapi uvicorn sqlalchemy pydantic faiss-cpu \
             langchain-huggingface beautifulsoup4 ollama
 ```
 
-2. Local LLM Setup (Ollama)
+### 2️⃣ Local LLM Setup (Ollama)
 
 This project leverages Phi-3 for local inference.
 
@@ -235,7 +226,7 @@ Verify installation:
 
 Pull the model: ```bash ollama pull phi3 ```
 
-3. Data Initialization
+### 3️⃣ Data Initialization
 Since medical data is kept private and not tracked in this repo, you must run the ingestion scripts to generate your local SQLite database and FAISS vector index:
 
 Populate the SQLite Database
@@ -246,9 +237,11 @@ Generate embeddings and create the FAISS index
 
 ``` bash python embeddings.py ```
 
-4. Start the API Server
+### 4️⃣ Start the API Server
+
 Launch the FastAPI backend:
-python main.py
+
+```bash python main.py ```
 
 The server will be available at http://127.0.0.1:8000. You can access the interactive Swagger documentation at:
 
