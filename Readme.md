@@ -5,7 +5,7 @@
 
 A specialized Medical NLP Chatbot designed for high-accuracy clinical query answering. This system implements a Hybrid Retrieval-Augmented Generation (RAG) architecture, combining the precision of SQL with the semantic depth of Vector Search.
 
-🌟 Key Features
+## 🌟 Key Features
 
 
 100% Local & Private: No external API calls (OpenAI/Anthropic). All data stays on-premise, ensuring HIPAA-compliant design principles.
@@ -15,7 +15,8 @@ Hybrid Retrieval: Merges structured SQLite lookups (for patient metadata) with s
 Longitudinal View: Smart SQL logic identifies all historical visit IDs associated with an MRD to analyze patient trends over time.
 
 Deterministic Guardrails: Hard-coded system prompts and temperature: 0 settings to eliminate hallucinations.
----------------------------------------------------------------------------------------------
+
+
 ## System Architecture:
 ---
 
@@ -94,7 +95,8 @@ API Framework:	FastAPI
 Vector Store:	  FAISS (Facebook AI Similarity Search)
 Database:	      SQLite / SQLAlchemy
 Embeddings: 	  HuggingFace (sentence-transformers)
----------------------------------------------------------------------------------------------
+
+
 ## Retrieval Strategy: 
 ---
 
@@ -161,21 +163,25 @@ The above template will minimize hallucinations, ensure medical compliance and g
 To ensure the Med-RAG Clinical Assistant runs correctly in your local environment, follow these steps:
 
 1. Environment & Dependencies
+
 First, create a virtual environment to keep your dependencies isolated:
 
 python -m venv venv
+
 On Windows:
 .\venv\Scripts\activate
 
 Install the core RAG and API stack:
+
 pip install fastapi uvicorn sqlalchemy pydantic faiss-cpu \
             sentence-transformers langchain langchain-community \
             langchain-huggingface beautifulsoup4 ollama
 
 2. Local LLM Setup (Ollama)
+
 This project leverages Phi-3 for local inference.
 
-Download and Install Ollama
+**Download and Install Ollama**
 
 Verify installation: ollama --version
 
