@@ -110,7 +110,8 @@ Query Execution Flow:
 6. Local Inference: Generate a clinical answer using Phi-3 (Ollama) with a confidence score
 
 This longitudinal approach improves both accuracy and completeness by allowing the LLM to analyze trends and compare data across multiple dates of service.
----------------------------------------------------------------------------------------------
+
+
 ## Chunking Strategy
 ---
 
@@ -122,7 +123,8 @@ To support semantic retrieval, we will adopt the Chunking Strategy as follows:
 - Overlap: 50 characters
 
 This enhances retrieval precision, semantic search accuracy, and the grounding of LLM responses. Each chunk is embedded and stored independently in the FAISS index.
----------------------------------------------------------------------------------------------
+
+
 ## Prompt Design and Guardrails:
 ---
 
@@ -149,7 +151,8 @@ Answer: <text>
 Confidence: <score>
 
 The above template will minimize hallucinations, ensure medical compliance and guarantee all answers are directly derived from and traceable to specific patient records.
------------------------------------------------------------------------------------------------
+
+
 ## Project Setup & Usage:
 ---
 
