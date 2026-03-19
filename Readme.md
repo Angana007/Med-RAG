@@ -218,15 +218,12 @@ pip install fastapi uvicorn sqlalchemy pydantic faiss-cpu \
 
 This project leverages Phi-3 for local inference.
 
-**Download and Install Ollama**
-
-Verify installation: 
-
-```bash ollama --version ```
+Verify installation: ```bash ollama --version ```
 
 Pull the model: ```bash ollama pull phi3 ```
 
 ### 3️⃣ Data Initialization
+
 Since medical data is kept private and not tracked in this repo, you must run the ingestion scripts to generate your local SQLite database and FAISS vector index:
 
 Populate the SQLite Database
@@ -279,3 +276,12 @@ Expected Response:
   "confidence": "High"
 }
 ```
+## ✅ Summary
+
+Med-RAG delivers a **fully local, privacy-first clinical AI system** that combines:
+
+- **Structured SQL precision**
+- **Semantic vector intelligence**
+- **Deterministic LLM outputs**
+
+➡️ **Result:** Accurate, explainable, and safe medical query answering system
