@@ -90,10 +90,15 @@ Deterministic Guardrails: Hard-coded system prompts and temperature: 0 settings 
 ---
 
 LLM Inference:	Ollama (Phi-3 Mini)
+
 Orchestration:	LangChain / LangChain-Community
+
 API Framework:	FastAPI
+
 Vector Store:	  FAISS (Facebook AI Similarity Search)
+
 Database:	      SQLite / SQLAlchemy
+
 Embeddings: 	  HuggingFace (sentence-transformers)
 
 
