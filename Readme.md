@@ -1,6 +1,4 @@
 # 🩺 Med-RAG: Local Hybrid-Retrieval Medical Chatbot
-
-## Overview: 
 ---
 
 A specialized Medical NLP Chatbot designed for high-accuracy clinical query answering. This system implements a Hybrid Retrieval-Augmented Generation (RAG) architecture, combining the precision of SQL with the semantic depth of Vector Search.
