@@ -6,6 +6,8 @@
 A specialized Medical NLP Chatbot designed for high-accuracy clinical query answering. This system implements a Hybrid Retrieval-Augmented Generation (RAG) architecture, combining the precision of SQL with the semantic depth of Vector Search.
 
 🌟 Key Features
+
+
 100% Local & Private: No external API calls (OpenAI/Anthropic). All data stays on-premise, ensuring HIPAA-compliant design principles.
 
 Hybrid Retrieval: Merges structured SQLite lookups (for patient metadata) with semantic FAISS vector search (for unstructured clinical notes).
