@@ -8,16 +8,20 @@ A specialized Medical NLP Chatbot designed for high-accuracy clinical query answ
 ## 🌟 Key Features
 
 
-100% Local & Private: No external API calls (OpenAI/Anthropic). All data stays on-premise, ensuring HIPAA-compliant design principles.
+- **100% Local & Private**  
+  No external API calls (OpenAI/Anthropic). All data stays on-premise, ensuring HIPAA-compliant design principles.
 
-Hybrid Retrieval: Merges structured SQLite lookups (for patient metadata) with semantic FAISS vector search (for unstructured clinical notes).
+- **Hybrid Retrieval**  
+  Merges structured SQLite lookups (for patient metadata) with semantic FAISS vector search (for unstructured clinical notes).
 
-Longitudinal View: Smart SQL logic identifies all historical visit IDs associated with an MRD to analyze patient trends over time.
+- **Longitudinal View**  
+  Smart SQL logic identifies all historical visit IDs associated with an MRD to analyze patient trends over time.
 
-Deterministic Guardrails: Hard-coded system prompts and temperature: 0 settings to eliminate hallucinations.
+- **Deterministic Guardrails**  
+  Hard-coded system prompts and `temperature = 0` to eliminate hallucinations.
 
 
-## System Architecture:
+## 🏗️ System Architecture:
 ---
 
                     ┌─────────────────────────────┐
@@ -89,49 +93,60 @@ Deterministic Guardrails: Hard-coded system prompts and temperature: 0 settings 
 ## 🛠️ Technical Stack
 ---
 
-LLM Inference:	Ollama (Phi-3 Mini)
-
-Orchestration:	LangChain / LangChain-Community
-
-API Framework:	FastAPI
-
-Vector Store:	  FAISS (Facebook AI Similarity Search)
-
-Database:	      SQLite / SQLAlchemy
-
-Embeddings: 	  HuggingFace (sentence-transformers)
+- **LLM Inference:** Ollama (Phi-3 Mini)  
+- **Orchestration:** LangChain / LangChain-Community  
+- **API Framework:** FastAPI  
+- **Vector Store:** FAISS (Facebook AI Similarity Search)  
+- **Database:** SQLite / SQLAlchemy  
+- **Embeddings:** HuggingFace (sentence-transformers)
 
 
-## Retrieval Strategy: 
+## 🔍 Retrieval Strategy: 
 ---
 
-The system employs a Hybrid Retrieval Architecture  combining
-- Structured (SQL): A SQLite database stores structured patient metadata directly from the provided JSON records, including the MRD number, patient name, gender, and doctor details. The system also tracks visit IDs, discharge dates, and specific document types to maintain a complete clinical profile. This structured storage enables precise patient lookups and ensures that all information is validated before it reaches the retrieval stage. Crucially, the SQL layer identifies all unique visits associated with an MRD, enabling the system to retrieve information from past-dated events across the patient's entire medical history.
+The system employs a **Hybrid Retrieval Architecture** combining:
 
-- Semantic Retrieval (Vector RAG): Clinical descriptions and notes are embedded using sentence embeddings and stored in a FAISS vector database. The system retrieves doctor observations, progress notes, treatment summaries, and clinical descriptions based on their semantic similarity to the user's question.
+### 🧾 Structured (SQL)
+- Stores patient metadata from JSON records:
+  - MRD number, patient name, gender
+  - Doctor details
+  - Visit IDs, discharge dates, document types
+- Enables precise lookups and validation
+- Retrieves **all historical visits for longitudinal analysis**
 
-Query Execution Flow:
-1. Validation: Check for invalid MRDs or empty queries.
-2. MRD Identification: Locate the specific patient record using the mrd_number.
-3. Structured Lookup: Retrieve metadata and identify all historical visit IDs via SQL to ensure a longitudinal view.
-4. Semantic Search: Perform vector similarity search for clinical context (e.g., discharge medications).
-5. Context Synthesis: Merge SQL and Vector results into a single grounded prompt.
-6. Local Inference: Generate a clinical answer using Phi-3 (Ollama) with a confidence score
+### 🧠 Semantic Retrieval (Vector RAG)
+- Clinical notes embedded using sentence transformers
+- Stored in FAISS vector database
+- Retrieves:
+  - Doctor observations
+  - Progress notes
+  - Treatment summaries
+  - Clinical descriptions
 
-This longitudinal approach improves both accuracy and completeness by allowing the LLM to analyze trends and compare data across multiple dates of service.
+### ⚙️ Query Execution Flow
+1. **Validation** → Check for invalid MRDs or empty queries  
+2. **MRD Identification** → Locate patient record  
+3. **Structured Lookup** → Fetch metadata + visit history  
+4. **Semantic Search** → Retrieve relevant clinical context  
+5. **Context Synthesis** → Merge SQL + vector results  
+6. **Local Inference** → Generate answer + confidence score  
 
+✅ This **longitudinal approach** improves accuracy by analyzing trends across multiple visits.
 
-## Chunking Strategy
+## ✂️ Chunking Strategy
 ---
 
-Clinical notes in JSON records can be long and unstructured. To improve retrieval quality, notes are split into semantic chunks before embedding.
+Clinical notes are long and unstructured, so they are split before embedding:
 
-To support semantic retrieval, we will adopt the Chunking Strategy as follows:
+- **Chunk Size:** 500 characters  
+- **Overlap:** 50 characters  
 
-- Chunk size: 500 characters
-- Overlap: 50 characters
+🎯 Benefits:
+- Better semantic retrieval  
+- Higher accuracy  
+- Stronger grounding of LLM responses  
 
-This enhances retrieval precision, semantic search accuracy, and the grounding of LLM responses. Each chunk is embedded and stored independently in the FAISS index.
+Each chunk is embedded and stored independently in FAISS.
 
 
 ## Prompt Design and Guardrails:
