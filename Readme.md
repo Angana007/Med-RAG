@@ -159,7 +159,7 @@ To ensure the Med-RAG Clinical Assistant runs correctly in your local environmen
 First, create a virtual environment to keep your dependencies isolated:
 
 python -m venv venv
-# On Windows:
+On Windows:
 .\venv\Scripts\activate
 
 Install the core RAG and API stack:
@@ -179,10 +179,10 @@ Pull the model: ollama pull phi3
 3. Data Initialization
 Since medical data is kept private and not tracked in this repo, you must run the ingestion scripts to generate your local SQLite database and FAISS vector index:
 
-# Populate the SQLite Database
+Populate the SQLite Database
 python database.py
 
-# Generate embeddings and create the FAISS index
+Generate embeddings and create the FAISS index
 python embeddings.py
 
 4. Start the API Server
