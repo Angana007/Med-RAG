@@ -1,0 +1,11 @@
+pydantic
+sqlalchemy
+sqlite3
+faiss-cpu
+sentence-transformers
+langchain
+langchain-community
+ollama
+beautifulsoup4
+fastapi
+uvicorn

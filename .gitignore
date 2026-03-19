@@ -1,0 +1,13 @@
+# Python environment
+venv/
+__pycache__/
+*.pyc
+
+# Local Database (Note the dot!)
+clinical_data.db
+
+# Vector Store / Index files
+faiss_index/
+
+# Patient JSON Data
+patient_*.json
