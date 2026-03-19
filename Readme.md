@@ -149,7 +149,7 @@ Clinical notes are long and unstructured, so they are split before embedding:
 Each chunk is embedded and stored independently in FAISS.
 
 
-## Prompt Design and Guardrails:
+## 🛡️ Prompt Design and Guardrails:
 ---
 
 Clinical AI prioritizes **safety over creativity**.
@@ -196,6 +196,7 @@ Confidence: <score>
 
 ```bash
 python -m venv venv
+```
 
 ## Project Setup & Usage:
 ---
@@ -206,16 +207,23 @@ To ensure the Med-RAG Clinical Assistant runs correctly in your local environmen
 
 First, create a virtual environment to keep your dependencies isolated:
 
+```bash
 python -m venv venv
+```
 
 On Windows:
+
+```bash
 .\venv\Scripts\activate
+```
 
 Install the core RAG and API stack:
 
+```bash
 pip install fastapi uvicorn sqlalchemy pydantic faiss-cpu \
             sentence-transformers langchain langchain-community \
             langchain-huggingface beautifulsoup4 ollama
+```
 
 2. Local LLM Setup (Ollama)
 
@@ -223,18 +231,22 @@ This project leverages Phi-3 for local inference.
 
 **Download and Install Ollama**
 
-Verify installation: ollama --version
+Verify installation: 
 
-Pull the model: ollama pull phi3
+```bash ollama --version ```
+
+Pull the model: ```bash ollama pull phi3 ```
 
 3. Data Initialization
 Since medical data is kept private and not tracked in this repo, you must run the ingestion scripts to generate your local SQLite database and FAISS vector index:
 
 Populate the SQLite Database
-python database.py
+
+```bash python database.py ```
 
 Generate embeddings and create the FAISS index
-python embeddings.py
+
+``` bash python embeddings.py ```
 
 4. Start the API Server
 Launch the FastAPI backend:
@@ -244,23 +256,35 @@ The server will be available at http://127.0.0.1:8000. You can access the intera
 
 👉 http://127.0.0.1:8000/docs
 
-API Interaction Example
-Endpoint: POST /query
+## 📡 API Usage Example 
+
+Endpoint: 
+
+```bash POST /query ```
 
 Request Body:
+
+```bash
 {
   "mrd_number": "17319",
   "query": "What did the doctor say about the patient condition?"
 }
+```
 
 cURL Command:
+
+```bash
 curl -X POST "http://localhost:8000/query" \
      -H "Content-Type: application/json" \
      -d '{"mrd_number": "17319", "query": "What is the patient condition?"}'
+```
 
 Expected Response:
+
+```bash
 {
   "mrd_number": "17319",
   "answer": "The doctor noted that the patient was stable with no complaints.",
   "confidence": "High"
 }
+```
