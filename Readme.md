@@ -93,29 +93,29 @@ A specialized Medical NLP Chatbot designed for high-accuracy clinical query answ
 ```mermaid
 flowchart TD
 
-A[Client / User (cURL)] -->|HTTP Request| B[FastAPI Server<br/>Chatbot Backend]
+A["Client / User (cURL)"] -->|HTTP Request| B["FastAPI Server<br/>Chatbot Backend"]
 
-B --> C[Query Processing Layer]
+B --> C["Query Processing Layer"]
 
-C --> D[Structured Retrieval<br/>(SQL Database)]
-C --> E[Semantic Retrieval<br/>(Vector Search / RAG)]
+C --> D["Structured Retrieval (SQL Database)"]
+C --> E["Semantic Retrieval (Vector Search / RAG)"]
 
-D --> D1[Patient Metadata<br/>MRD Number<br/>Visit Info<br/>Doctor Details]
-E --> E1[Embedded Clinical Notes<br/>Progress Notes<br/>Consultation Reports]
+D --> D1["Patient Metadata<br/>MRD Number<br/>Visit Info<br/>Doctor Details"]
+E --> E1["Embedded Clinical Notes<br/>Progress Notes<br/>Consultation Reports"]
 
-D1 --> F[SQLite DB]
-E1 --> G[FAISS Vector DB]
+D1 --> F["SQLite DB"]
+E1 --> G["FAISS Vector DB"]
 
-F --> H[Retrieved Context]
+F --> H["Retrieved Context"]
 G --> H
 
-H --> I[Prompt Construction<br/>System Prompt + SQL + Vector + Query]
+H --> I["Prompt Construction<br/>System Prompt + SQL + Vector + Query"]
 
-I --> J[Local LLM Inference<br/>Phi-3 via Ollama]
+I --> J["Local LLM Inference<br/>Phi-3 via Ollama"]
 
-J --> K[Generated Clinical Answer]
+J --> K["Generated Clinical Answer"]
 
-K --> L[JSON API Response]
+K --> L["JSON API Response"]
 
 L --> A
 ```
