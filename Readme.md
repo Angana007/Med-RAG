@@ -82,7 +82,7 @@ Deterministic Guardrails: Hard-coded system prompts and temperature: 0 settings 
                             ▼
                      Client/User
 
----------------------------------------------------------------------------------------------
+
 ## 🛠️ Technical Stack
 ---
 
