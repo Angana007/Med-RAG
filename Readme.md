@@ -152,30 +152,50 @@ Each chunk is embedded and stored independently in FAISS.
 ## Prompt Design and Guardrails:
 ---
 
-Clinical AI prefers safety over creativity. The system prompt enforces strict grounding to prevent hallucinations and ensure answers come only from retrieved clinical data.
+Clinical AI prioritizes **safety over creativity**.
 
-Guardrails Implemented:
-- Model instructed to use ONLY retrieved context, preventing outside knowledge or invented treatments.
-- If the answer is missing from context, the model returns “No retrieval match.”
-- Temperature has been set to 0 to produce consistent, factual outputs.
+### 🚧 Guardrails Implemented:
+- Use **ONLY retrieved context**
+- No external knowledge or hallucinations
+- Return `"No retrieval match"` if answer is missing
+- `temperature = 0` for deterministic outputs
 
-We enforce a structured consistent response format:
+### 📌 Response Format:
+
 Answer: <response>
 Confidence: <High/Medium/Low>
 
-Sample System Prompt:
+### 🧠 Sample System Prompt:
 
 You are a Medical AI Assistant. Use ONLY the provided context.
+
 Rules:
-1. Do not use outside knowledge.
-2. If the answer is missing, say "No retrieval match."
-3. No assumptions or speculation.
-4. Output format:
+
+Do not use outside knowledge.
+
+If the answer is missing, say "No retrieval match."
+
+No assumptions or speculation.
+
+Output format:
 Answer: <text>
 Confidence: <score>
 
-The above template will minimize hallucinations, ensure medical compliance and guarantee all answers are directly derived from and traceable to specific patient records.
 
+✅ Ensures:
+- Hallucination-free outputs  
+- Medical compliance  
+- Traceable answers  
+
+---
+
+## 🚀 Project Setup & Usage
+---
+
+### 1️⃣ Environment & Dependencies
+
+```bash
+python -m venv venv
 
 ## Project Setup & Usage:
 ---
