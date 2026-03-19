@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Python environment
 venv/
 __pycache__/
@@ -11,3 +12,4 @@ faiss_index/
 
 # Patient JSON Data
 patient_*.json
+=======
