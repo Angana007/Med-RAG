@@ -17,3 +17,5 @@ patient_*.json
 
 # Evaluation reports (regenerate via eval_runner.py)
 eval_reports/
+
+demo/
