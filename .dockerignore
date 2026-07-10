@@ -1,0 +1,14 @@
+.git
+.github
+__pycache__
+*.pyc
+venv
+.venv
+demo
+eval_reports
+tests
+.dockerignore
+Dockerfile
+docker-compose.yml
+Readme.md
+LICENSE

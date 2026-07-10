@@ -2,6 +2,7 @@
 venv/
 __pycache__/
 *.pyc
+.pytest_cache/
 
 # Secrets / local config
 .env
@@ -16,6 +17,8 @@ faiss_index/
 patient_*.json
 
 # Evaluation reports (regenerate via eval_runner.py)
-eval_reports/
+eval_reports/*
+# ...except the published benchmark referenced in the README's Performance Metrics
+!eval_reports/eval_report_20260709_231050.json
 
 demo/

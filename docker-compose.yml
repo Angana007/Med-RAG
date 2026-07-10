@@ -1,0 +1,43 @@
+# Med-RAG full stack: Ollama (local LLM) + FastAPI (hybrid RAG API)
+#
+#   docker compose up --build
+#   docker compose exec ollama ollama pull phi3   # first run only
+#
+# API:    http://localhost:8000  (Swagger UI at /docs)
+# Ollama: http://localhost:11434
+#
+# On first startup the API container builds its demo data stores
+# (SQLite DB + FAISS index) from the bundled synthetic dataset — this
+# includes a one-time ~90 MB embedding-model download.
+
+services:
+  ollama:
+    image: ollama/ollama:latest
+    container_name: medrag-ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_models:/root/.ollama   # persist pulled models across restarts
+    restart: unless-stopped
+
+  api:
+    build: .
+    container_name: medrag-api
+    ports:
+      - "8000:8000"
+    environment:
+      OLLAMA_HOST: http://ollama:11434
+      CLINICAL_RAG_API_KEY: dev-key-change-in-prod   # change before real deployment
+    volumes:
+      - hf_cache:/root/.cache/huggingface   # persist the embedding model download
+      # Working locally with pre-built data stores? Mount them in instead of
+      # letting the container rebuild its own:
+      #   - ./clinical_data.db:/app/clinical_data.db
+      #   - ./faiss_index:/app/faiss_index
+    depends_on:
+      - ollama
+    restart: unless-stopped
+
+volumes:
+  ollama_models:
+  hf_cache:
