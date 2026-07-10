@@ -1,0 +1,162 @@
+{
+  "_comment": "Self-contained demo dataset for the Med-RAG demo console. Two synthetic patients + a small clinical-guidance knowledge base. All data is synthetic — no real PHI. Mirrors the production schema (SQLite facts + FAISS narrative chunks) in one portable file so the demo deploys anywhere in minutes.",
+  "patients": {
+    "20001": {
+      "mrd_number": "20001",
+      "patient_name": "JENNIFER CONRAD",
+      "gender": "Female",
+      "dob": "1975-07-20",
+      "diagnosis": "Type 2 Diabetes",
+      "doctor_name": "Dr. Kim",
+      "visit_count": 5
+    },
+    "20002": {
+      "mrd_number": "20002",
+      "patient_name": "MARCUS OKAFOR",
+      "gender": "Male",
+      "dob": "1962-11-03",
+      "diagnosis": "Type 2 Diabetes with CKD Stage 3b",
+      "doctor_name": "Dr. Ferreira",
+      "visit_count": 3
+    }
+  },
+  "chunks": [
+    {
+      "id": "P1-V1",
+      "mrd": "20001",
+      "source_type": "patient_record",
+      "title": "Visit 1 — OPD Progress Note",
+      "date": "2026-01-14",
+      "author": "Dr. Kim, General Medicine",
+      "text": "Initial consultation. Patient presents with polyuria, fatigue, and elevated fasting glucose. HbA1c measured at 8.4%. Diagnosis: Type 2 Diabetes. Started metformin 500mg twice daily. Dietary counseling provided; referred to nutritionist. Follow-up in 5 weeks."
+    },
+    {
+      "id": "P1-V2",
+      "mrd": "20001",
+      "source_type": "patient_record",
+      "title": "Visit 2 — OPD Progress Note",
+      "date": "2026-02-18",
+      "author": "Dr. Kim, General Medicine",
+      "text": "Follow-up visit. Patient tolerating metformin with mild GI upset, advised to take with meals. HbA1c 8.0%, improved from 8.4%. Fasting glucose trending down. Continue metformin 500mg twice daily. Reinforced dietary plan. Follow-up in 4 weeks."
+    },
+    {
+      "id": "P1-V3",
+      "mrd": "20001",
+      "source_type": "patient_record",
+      "title": "Visit 3 — OPD Progress Note",
+      "date": "2026-03-25",
+      "author": "Dr. Boyd, General Medicine",
+      "text": "Routine follow-up. HbA1c 7.5%, continued improvement. Patient reports better energy levels and adherence to meal plan. Metformin increased to 850mg twice daily to consolidate glycemic control. No acute complications noted. Follow-up in 4 weeks."
+    },
+    {
+      "id": "P1-V4",
+      "mrd": "20001",
+      "source_type": "patient_record",
+      "title": "Visit 4 — OPD Progress Note",
+      "date": "2026-04-29",
+      "author": "Dr. Kim, General Medicine",
+      "text": "Patient reports she stopped taking metformin for approximately two weeks this month due to recurring GI upset. HbA1c 7.7%, slightly up from prior visit. Counseled on extended-release metformin as an alternative; switched to metformin XR 1000mg once daily. Follow-up in 4 weeks."
+    },
+    {
+      "id": "P1-V5",
+      "mrd": "20001",
+      "source_type": "patient_record",
+      "title": "Visit 5 — OPD Progress Note",
+      "date": "2026-06-03",
+      "author": "Dr. Kim, General Medicine",
+      "text": "Follow-up on metformin XR. Patient tolerating the extended-release formulation well, no GI complaints, resumed full adherence. HbA1c 7.2%, best reading to date. Vital signs stable. No acute complications. Continue metformin XR 1000mg daily. Follow-up in 8 weeks."
+    },
+    {
+      "id": "P2-V1",
+      "mrd": "20002",
+      "source_type": "patient_record",
+      "title": "Visit 1 — Nephrology Consult Note",
+      "date": "2026-03-10",
+      "author": "Dr. Ferreira, Nephrology",
+      "text": "Referred for declining renal function. Known Type 2 Diabetes, 11 years. eGFR 54 mL/min (CKD Stage 3a borderline 3b). Current medications: metformin 1000mg twice daily, lisinopril 20mg daily. Urine ACR elevated. Advised strict BP control and repeat renal panel in 3 months."
+    },
+    {
+      "id": "P2-V2",
+      "mrd": "20002",
+      "source_type": "patient_record",
+      "title": "Visit 2 — OPD Progress Note",
+      "date": "2026-05-12",
+      "author": "Dr. Ferreira, Nephrology",
+      "text": "Patient reports self-medicating with over-the-counter ibuprofen for chronic knee pain, roughly 3 times per week for the past month. Advised to stop NSAID use given renal status; discussed paracetamol and topical alternatives. Renal panel ordered ahead of schedule."
+    },
+    {
+      "id": "P2-V3",
+      "mrd": "20002",
+      "source_type": "patient_record",
+      "title": "Visit 3 — Renal Panel Review",
+      "date": "2026-06-20",
+      "author": "Dr. Ferreira, Nephrology",
+      "text": "Repeat renal panel: eGFR 48 mL/min, down from 54 in March — now CKD Stage 3b. Potassium 4.9 mmol/L (upper normal). Patient still on metformin 1000mg twice daily and lisinopril 20mg daily. NSAID cessation reportedly partial. Flagged for medication review at next visit."
+    },
+    {
+      "id": "G1",
+      "mrd": null,
+      "source_type": "clinical_guideline",
+      "title": "Formulary Protocol — Metformin Renal Dosing",
+      "date": "2025-11-01",
+      "author": "Hospital Pharmacy & Therapeutics Committee",
+      "text": "Metformin renal dosing protocol: eGFR ≥ 45 — standard dosing. eGFR 30–44 — do not initiate; if already on metformin, reduce to a maximum of 1000mg total daily dose and increase monitoring. eGFR < 30 — metformin is contraindicated; discontinue. Rationale: reduced renal clearance raises the risk of lactic acidosis, a rare but life-threatening complication. Re-check eGFR within 3 months of any downward trend."
+    },
+    {
+      "id": "G2",
+      "mrd": null,
+      "source_type": "clinical_guideline",
+      "title": "Clinical Advisory — NSAIDs in Chronic Kidney Disease",
+      "date": "2025-11-01",
+      "author": "Hospital Pharmacy & Therapeutics Committee",
+      "text": "NSAIDs (ibuprofen, naproxen, diclofenac) are nephrotoxic and should be avoided in CKD stage 3 and beyond. Combined use of an NSAID with an ACE inhibitor (e.g., lisinopril) and a diuretic — the 'triple whammy' — significantly increases the risk of acute kidney injury. NSAID use can also accelerate eGFR decline and raise serum potassium. Prefer paracetamol or topical agents for analgesia in CKD patients."
+    },
+    {
+      "id": "G3",
+      "mrd": null,
+      "source_type": "clinical_guideline",
+      "title": "Care Standard — Glycemic Targets & Monitoring",
+      "date": "2025-11-01",
+      "author": "Endocrinology Department",
+      "text": "General HbA1c target for most adults with Type 2 Diabetes: below 7.0%, individualized for age and comorbidity. HbA1c should be measured every 3 months when therapy has changed or targets are not met, and every 6 months once stable. A downward HbA1c trend across consecutive visits indicates improving glycemic control; interruptions in medication adherence commonly appear as a plateau or rebound in HbA1c."
+    }
+  ],
+  "showcase_queries": [
+    {
+      "id": "SQ1",
+      "label": "Drug-safety reasoning",
+      "mrd": "20002",
+      "query": "This patient's eGFR has dropped from 54 to 48 and they're still on metformin 1000mg twice daily. What should the care team watch for?",
+      "chunk_ids": ["P2-V3", "P2-V1", "G1", "G2", "P2-V2"],
+      "confidence": "High",
+      "answer": "Three things stand out for this patient, and each is grounded in his record and the formulary protocols:\n\n**1. Metformin dose is approaching a protocol boundary.** His eGFR is now 48 [1], and the renal dosing protocol caps metformin at 1000mg *total* daily once eGFR falls below 45 [3]. He is currently taking 2000mg/day (1000mg twice daily) [1]. He hasn't crossed the threshold yet, but the trend (54 → 48 in three months [1][2]) means the care team should plan a dose reduction now rather than react later. The underlying risk is lactic acidosis from reduced renal clearance [3].\n\n**2. The NSAID use is likely accelerating the decline.** He reported taking ibuprofen ~3×/week [5], and cessation has only been partial [1]. He is also on lisinopril [2] — an NSAID + ACE-inhibitor combination is specifically flagged as high-risk for acute kidney injury in CKD [4]. Resolving the NSAID issue may be the single highest-impact intervention.\n\n**3. Potassium is at the upper limit.** His potassium is 4.9 [1]; both lisinopril and NSAIDs push potassium upward [4], so the next renal panel should be watched closely.\n\n⚠️ *This is decision support, not a prescription — the medication review already flagged in his chart [1] is where these calls get made.*"
+    },
+    {
+      "id": "SQ2",
+      "label": "Longitudinal trend analysis",
+      "mrd": "20001",
+      "query": "Is this patient's glycemic control improving? Summarize the trend across all visits.",
+      "chunk_ids": ["P1-V1", "P1-V2", "P1-V3", "P1-V4", "P1-V5", "G3"],
+      "confidence": "High",
+      "answer": "Yes — overall her control is clearly improving, but the trend is not a straight line, and the dip in the middle is clinically meaningful:\n\n| Visit | Date | HbA1c | What happened |\n|---|---|---|---|\n| 1 | Jan 14 | 8.4% | Diagnosis; metformin started [1] |\n| 2 | Feb 18 | 8.0% | Improving; mild GI upset [2] |\n| 3 | Mar 25 | 7.5% | Improving; dose increased [3] |\n| 4 | Apr 29 | 7.7% ⚠ | **Rebound** — she stopped metformin for ~2 weeks due to GI side effects [4] |\n| 5 | Jun 3 | 7.2% | Best reading; switched to XR formulation, adherence restored [5] |\n\nThe visit-4 rebound matches exactly what the care standard predicts: adherence interruptions show up as a plateau or rebound in HbA1c [6]. The clinician's response — switching to extended-release metformin rather than escalating the dose [4] — addressed the *cause* (tolerability) instead of the symptom, and visit 5 confirms it worked [5].\n\nShe is not yet at the general target of <7.0% [6], so continued monitoring on the current 8-week cycle is appropriate."
+    },
+    {
+      "id": "SQ3",
+      "label": "Contradiction check",
+      "mrd": "20001",
+      "query": "Did the patient stop taking metformin at any point? Do the records agree?",
+      "chunk_ids": ["P1-V4", "P1-V5", "P1-V2", "P1-V3"],
+      "confidence": "High",
+      "answer": "Yes, she did — and the records are **consistent** once read in sequence, though a single-visit read could mislead:\n\n- **Visit 4 (Apr 29)** documents the interruption explicitly: she stopped metformin for approximately two weeks that month due to recurring GI upset [1].\n- **Visit 5 (Jun 3)** says she \"resumed full adherence\" [2] — which only makes sense *because* of the visit-4 interruption. Read alone, visit 5 could imply she never stopped.\n- The early warning was there: **visit 2** already noted mild GI upset [3], and visit 3 raised the dose anyway [4], which plausibly worsened tolerability.\n\nSo: one interruption, well-documented, resolved by switching to the XR formulation. No contradiction — but this is a good example of why the system retrieves the *full* visit history rather than only the most recent note: longitudinal context is what makes the visit-5 phrasing interpretable."
+    },
+    {
+      "id": "SQ4",
+      "label": "Safety refusal (PHI)",
+      "mrd": "20002",
+      "query": "What is this patient's phone number and home address?",
+      "chunk_ids": [],
+      "confidence": "N/A",
+      "answer": "__PHI_REFUSAL__"
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+# Python environment
+venv/
+__pycache__/
+*.pyc
+
+# Secrets / local config
+.env
+
+# Local Database (Note the dot!)
+clinical_data.db
+
+# Vector Store / Index files
+faiss_index/
+
+# Patient JSON Data
+patient_*.json
+
+# Evaluation reports (regenerate via eval_runner.py)
+eval_reports/

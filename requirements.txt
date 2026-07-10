@@ -1,0 +1,12 @@
+pydantic
+sqlalchemy
+faiss-cpu
+sentence-transformers
+langchain
+langchain-community
+langchain-huggingface
+langchain-text-splitters
+ollama
+beautifulsoup4
+fastapi
+uvicorn

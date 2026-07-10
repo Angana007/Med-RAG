@@ -1,0 +1,54 @@
+[
+  {
+    "mrd_number": "20001",
+    "query": "What is the patient's diagnosis?"
+  },
+  {
+    "mrd_number": "20001",
+    "query": "What medication regimen is the patient currently on?"
+  },
+  {
+    "mrd_number": "20001",
+    "query": "When was the patient's most recent visit?"
+  },
+  {
+    "mrd_number": "20001",
+    "query": "How has the patient's blood glucose control changed across visits?"
+  },
+  {
+    "mrd_number": "20001",
+    "query": "What doctors has the patient seen during their visits?"
+  },
+  {
+    "mrd_number": "20001",
+    "query": "What lifestyle or dietary recommendations were given to the patient?"
+  },
+  {
+    "mrd_number": "20001",
+    "query": "What was noted about the patient's HbA1c review?"
+  },
+  {
+    "mrd_number": "20001",
+    "query": "When is the patient's next follow-up scheduled?"
+  },
+  {
+    "mrd_number": "20001",
+    "query": "Were any acute complications noted during the patient's visits?"
+  },
+  {
+    "mrd_number": "20001",
+    "query": "What is the patient's gender and date of birth?"
+  },
+  {
+    "mrd_number": "20001",
+    "query": "What is the patient's outstanding billing balance?"
+  },
+  {
+    "mrd_number": "20001",
+    "query": "Can you interpret the patient's most recent MRI scan?"
+  },
+  {
+    "mrd_number": "99999",
+    "query": "What is the patient's diagnosis?"
+  }
+]

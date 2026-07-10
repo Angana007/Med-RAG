@@ -1,0 +1,63 @@
+### Med-RAG API requests — for the "REST Client" VS Code extension (humao.rest-client)
+### Start the server first: python main.py
+### Click "Send Request" above any block below once it's running.
+
+@baseUrl = http://127.0.0.1:8000
+@apiKey = dev-key-change-in-prod
+
+### Health check — no API key required
+GET {{baseUrl}}/health
+
+### Runtime metrics
+GET {{baseUrl}}/metrics
+X-API-Key: {{apiKey}}
+
+### Happy-path query — demo patient MRD 20001 (Type 2 Diabetes, 5 visits)
+POST {{baseUrl}}/query
+Content-Type: application/json
+X-API-Key: {{apiKey}}
+
+{
+  "mrd_number": "20001",
+  "query": "How has the patient's blood glucose control changed across visits?"
+}
+
+### Diagnosis lookup
+POST {{baseUrl}}/query
+Content-Type: application/json
+X-API-Key: {{apiKey}}
+
+{
+  "mrd_number": "20001",
+  "query": "What is the patient's diagnosis?"
+}
+
+### Guardrail test — out-of-scope topic (expect 400 Unsupported)
+POST {{baseUrl}}/query
+Content-Type: application/json
+X-API-Key: {{apiKey}}
+
+{
+  "mrd_number": "20001",
+  "query": "What is the patient's outstanding billing balance?"
+}
+
+### Guardrail test — unsupported doc type (expect 400 Unsupported)
+POST {{baseUrl}}/query
+Content-Type: application/json
+X-API-Key: {{apiKey}}
+
+{
+  "mrd_number": "20001",
+  "query": "Can you interpret the patient's most recent MRI scan?"
+}
+
+### Invalid MRD test (expect 404 Not Found)
+POST {{baseUrl}}/query
+Content-Type: application/json
+X-API-Key: {{apiKey}}
+
+{
+  "mrd_number": "99999",
+  "query": "What is the patient's diagnosis?"
+}
